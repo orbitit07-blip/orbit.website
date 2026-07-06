@@ -268,12 +268,14 @@
       </div>
 
       <!-- Empty state if search fails -->
-      <div id="empty-state" class="hidden text-center max-w-md mx-auto bg-white border border-emerald-100 p-8 rounded-2xl shadow-sm mt-12">
-        <span class="text-4xl block">🔍</span>
-        <h3 class="font-display font-extrabold text-primary text-lg mt-4">No Campus Gear Found</h3>
-        <p class="text-charcoal/60 mt-2 text-sm leading-relaxed">No active campus listings match your chosen filters or keyword. Try clearing some selections, or post one yourself!</p>
-        <button onclick="resetFiltersAll()" class="mt-4 px-4 py-2 bg-emerald-50 text-emerald-800 text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-emerald-100 transition">
-          Clear All Filters
+      <div id="empty-state" class="hidden text-center max-w-[480px] mx-auto bg-white p-8 rounded-3xl mt-12" style="border: 2px dashed rgba(10,46,26,0.2);">
+        <span class="text-5xl block mb-4">🪐</span>
+        <h3 class="font-display font-black text-lg" style="color: #0A2E1A;">No Listings Yet</h3>
+        <p class="mt-2 text-sm leading-relaxed" style="color: rgba(26,26,26,0.6);">
+          Be the first to list something on Orbit. Got old books, gadgets, or hostel essentials? Post your first item and start the campus trade!
+        </p>
+        <button onclick="scrollToPosition('sell')" class="mt-6 px-6 py-3 bg-[#AAFF45] text-black font-extrabold rounded-xl hover:opacity-90 transition duration-150 shadow-md">
+          Post the First Item →
         </button>
       </div>
 
@@ -360,21 +362,6 @@
     </div>
   </section>
 
-  <!-- ══════════════ TESTIMONIALS SECTION ══════════════ -->
-  <section class="py-20 bg-primary text-white border-t border-b border-accent/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight">Verified Campus Love</h2>
-        <p class="text-light/85 mt-3 font-medium">Hear how fellow students saved money, sourced hard-to-get textbooks, and listed accessories in a dash!</p>
-      </div>
-
-      <!-- Testimonials grid container -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8" id="testimonials-grid">
-        <!-- Dyn generated items inside JS -->
-      </div>
-    </div>
-  </section>
-
   <!-- ══════════════ POST AN ITEM SUBMISSION FORM ══════════════ -->
   <section id="sell" class="py-20 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
@@ -449,8 +436,7 @@
           <div class="mb-6">
             <label for="form-whatsapp" class="block font-display text-xs font-black uppercase tracking-wider text-primary mb-2">WhatsApp Contact Number</label>
             <div class="relative">
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-sm text-primary/75">+91</span>
-              <input type="tel" id="form-whatsapp" required pattern="[0-9]{10}" placeholder="8800966889" class="w-full pl-14 pr-4 py-3 border-2 border-primary/10 rounded-xl text-sm placeholder-primary/30 outline-none focus:border-primary transition" />
+              <input type="tel" id="form-whatsapp" required pattern="[0-9]{10}" placeholder="98XXXXXXXX" class="w-full px-4 py-3 border-2 border-primary/10 rounded-xl text-sm placeholder-primary/20 outline-none focus:border-primary transition" />
             </div>
             <p class="text-[11px] text-primary/55 font-semibold mt-1">Required so peers can instantly initiate an introduced buying conversation over WhatsApp web/app.</p>
           </div>
@@ -512,8 +498,8 @@
   </section>
 
   <!-- ══════════════ FOOTER ══════════════ -->
-  <footer>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+  <footer style="background-color: #0A2E1A; border-top: 4px solid #AAFF45; border-radius: 2.5rem 2.5rem 0 0;" class="text-white/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12" style="background-color: #0A2E1A;">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         
         <!-- Col 1 -->
@@ -528,18 +514,18 @@
             </div>
             <span class="font-display font-black text-lg text-white uppercase tracking-wider">Orbit<em class="text-accent not-italic">.</em></span>
           </div>
-          <p class="text-xs text-light/70 leading-relaxed max-w-xs">
+          <p class="text-xs text-white/70 leading-relaxed max-w-xs">
             Sustainable, clean student platform supporting eco-friendly asset cycles, recycling, and fair pricing strictly inside the campus gates.
           </p>
           
           <!-- Social Link items -->
           <div class="flex gap-2 mt-4">
-            <a href="https://wa.me/918800966889" target="_blank" class="p-2 bg-black/20 hover:bg-accent hover:text-primary rounded-full text-accent transition-all duration-150">
+            <a href="https://wa.me/918800966889" target="_blank" style="background-color: rgba(0,0,0,0.3); color: #AAFF45;" class="p-2 hover:bg-accent hover:text-primary rounded-full transition-all duration-150">
               <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
                 <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.03-5.115-2.908-6.995-1.878-1.88-4.357-2.914-6.999-2.914-5.439 0-9.865 4.423-9.87 9.869-.001 1.748.476 3.414 1.385 4.881l-1.012 3.7 3.791-.994L6.647 19.154z"/>
               </svg>
             </a>
-            <a href="mailto:formylaptop9197@gmail.com" class="p-2 bg-black/20 hover:bg-accent hover:text-primary rounded-full text-accent transition-all duration-150">
+            <a href="mailto:orbitit07@gmail.com" style="background-color: rgba(0,0,0,0.3); color: #AAFF45;" class="p-2 hover:bg-accent hover:text-primary rounded-full transition-all duration-150">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
@@ -549,41 +535,41 @@
 
         <!-- Col 2 -->
         <div>
-          <h4 class="font-display font-bold text-xs uppercase tracking-widest text-accent mb-4">Sitemap</h4>
-          <ul class="space-y-2 text-xs text-light/75 font-medium">
-            <li><a href="#home" class="hover:text-accent transition">Home Panel</a></li>
-            <li><a href="#categories" class="hover:text-accent transition">Essential Categories</a></li>
-            <li><a href="#browse" class="hover:text-accent transition">Dorm & Study Listings</a></li>
-            <li><a href="#how-it-works" class="hover:text-accent transition">How Transactions Work</a></li>
-            <li><a href="#sell" class="hover:text-accent transition">Post New Gear Form</a></li>
+          <h4 style="color: #AAFF45;" class="font-display font-bold text-xs uppercase tracking-widest mb-4">SITEMAP</h4>
+          <ul class="space-y-2 text-xs font-medium text-white/80">
+            <li><a href="#home" class="hover:text-[#AAFF45] transition">Home Panel</a></li>
+            <li><a href="#categories" class="hover:text-[#AAFF45] transition">Essential Categories</a></li>
+            <li><a href="#browse" class="hover:text-[#AAFF45] transition">Dorm & Study Listings</a></li>
+            <li><a href="#how-it-works" class="hover:text-[#AAFF45] transition">How Transactions Work</a></li>
+            <li><a href="#sell" class="hover:text-[#AAFF45] transition">Post New Gear Form</a></li>
           </ul>
         </div>
 
         <!-- Col 3 -->
         <div>
-          <h4 class="font-display font-bold text-xs uppercase tracking-widest text-accent mb-4">Campus Rules</h4>
-          <ul class="space-y-2 text-xs text-light/70">
+          <h4 style="color: #AAFF45;" class="font-display font-bold text-xs uppercase tracking-widest mb-4">CAMPUS RULES</h4>
+          <ul class="space-y-2 text-xs text-white/80">
             <li class="flex items-start gap-1.5 leading-normal">
-              <span class="text-accent">✓</span> Direct student-only handoffs
+              <span style="color: #AAFF45;">✓</span> Direct student-only handoffs
             </li>
             <li class="flex items-start gap-1.5 leading-normal">
-              <span class="text-accent">✓</span> Inspect before making UPI payments
+              <span style="color: #AAFF45;">✓</span> Inspect before making UPI payments
             </li>
             <li class="flex items-start gap-1.5 leading-normal">
-              <span class="text-accent">✓</span> Always meet up in safe daylight canteen areas
+              <span style="color: #AAFF45;">✓</span> Always meet up in safe daylight canteen areas
             </li>
           </ul>
         </div>
 
         <!-- Col 4 -->
         <div>
-          <h4 class="font-display font-bold text-xs uppercase tracking-widest text-accent mb-4">Contact & Support</h4>
-          <p class="text-xs text-light/70 leading-relaxed mb-3">Reach out for help with listings, reporting suspicious postings, or partnering with your student cell.</p>
-          <a href="mailto:formylaptop9197@gmail.com" class="flex items-center gap-2 text-xs font-bold text-white hover:text-accent transition mb-2">
+          <h4 style="color: #AAFF45;" class="font-display font-bold text-xs uppercase tracking-widest mb-4">CONTACT & SUPPORT</h4>
+          <p class="text-xs text-white/75 leading-relaxed mb-3">Reach out for help with listings, reporting suspicious postings, or partnering with your student cell.</p>
+          <a href="mailto:orbitit07@gmail.com" class="flex items-center gap-2 text-xs font-bold text-white hover:text-[#AAFF45] transition mb-2">
             <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
-            formylaptop9197@gmail.com
+            orbitit07@gmail.com
           </a>
           <a href="https://wa.me/918800966889" target="_blank" class="flex items-center gap-2 text-xs font-bold text-accent hover:underline">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -593,13 +579,15 @@
           </a>
         </div>
       </div>
+    </div>
 
-      <!-- Copyright bottom -->
-      <div class="border-t border-accent/15 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-light/50 font-medium">
+    <!-- Bottom Bar copyright -->
+    <div class="w-full" style="background-color: rgba(0,0,0,0.3);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs" style="color: rgba(255,255,255,0.5);">
         <p>© 2026 Orbit Student Network. Built exclusively for campus peer trades. All rights reserved.</p>
         <div class="flex gap-4">
-          <span class="cursor-help hover:text-white transition" title="Orbit checks domain verification on student email bounds.">Verified Domain</span>
-          <span class="cursor-help hover:text-white transition" title="Payments handled peer-to-peer. Zero commission rules.">Zero-Fee Trade</span>
+          <span class="cursor-help hover:text-[#AAFF45] transition" title="Orbit checks domain verification on student email bounds.">Verified Domain</span>
+          <span class="cursor-help hover:text-[#AAFF45] transition" title="Payments handled peer-to-peer. Zero commission rules.">Zero-Fee Trade</span>
         </div>
       </div>
     </div>
@@ -643,12 +631,6 @@
       { id: 'gaming', name: 'Gaming & Fun', emoji: '🎮', desc: 'Card sets, tennis gear, controllers, games' }
     ];
 
-    const TESTIMONIALS = [
-      { name: 'Priya', year: '2nd Year (CSE)', avatar: 'P', quote: 'Bought my entire first-year textbook set for ₹400. Saved over ₹2000! They were kept in mint condition, and the senior even texted me exam prep tips.' },
-      { name: 'Arjun', year: 'Final Year (Mech)', avatar: 'A', quote: 'Listed my old laptop bag and sold it in 2 hours. Super easy! Orbit helps clear hostel clutters and gives seniors a quick, direct channel to junior peers.' },
-      { name: 'Sneha', year: '1st Year (ECE)', avatar: 'S', quote: 'Got all my hostel essentials like bedsheets, room bins, and drying racks from graduating seniors before even reaching campus. Orbit is an absolute lifesaver.' }
-    ];
-
     const FAQS = [
       { id: 1, q: 'Is Orbit free to use?', a: 'Absolutely! Orbit is 100% free to use for all college students. We do not charge listings fees, commission tags, or transaction cuts. All transaction funds remain in native student circles.' },
       { id: 2, q: 'How do I make sure the item is genuine?', a: 'Since Orbit is campus-bounded, you meet the student seller in public zones (canteen, hostel grounds, student yard) to inspect the goods visually. Only transact cash or UPI payouts after inspecting!' },
@@ -658,92 +640,7 @@
     ];
 
     // Local state variables
-    let listings = [
-      {
-        id: 'list-1',
-        name: 'Engineering Semester 3 Textbook Set',
-        category: 'books',
-        condition: 'Good',
-        price: 800,
-        originalPrice: 3200,
-        sellerYear: '3rd Year (Junior)',
-        whatsapp: '918800966889',
-        desc: 'Full bundle of textbooks for third semester Mech/Civil, including Math, Thermodynamics, and Solids Mechanics. Free handmade class notes included!',
-        emoji: '📚',
-        gradient: 'from-emerald-400 to-green-600',
-        dateAdded: Date.now() - 3600000 * 24 * 3 // 3 days ago
-      },
-      {
-        id: 'list-2',
-        name: 'Ergonomic Messenger Laptop Bag',
-        category: 'clothes',
-        condition: 'Like New',
-        price: 350,
-        originalPrice: 1200,
-        sellerYear: '2nd Year (Sophomore)',
-        whatsapp: '918800966889',
-        desc: 'Waterproof laptop bag with 15.6" laptop compartment and dual pockets. Used for only one semester. Zero scratches or tears.',
-        emoji: '💼',
-        gradient: 'from-green-400 to-emerald-700',
-        dateAdded: Date.now() - 3600000 * 24 * 2 // 2 days ago
-      },
-      {
-        id: 'list-3',
-        name: 'College Hoodies & Graphic Tees Bundle',
-        category: 'clothes',
-        condition: 'Fair',
-        price: 300,
-        originalPrice: 900,
-        sellerYear: '4th Year (Senior)',
-        whatsapp: '918800966889',
-        desc: 'A combo of 2 oversized premium hoodies and 1 basic graphical t-shirt. Medium size. Thoroughly washed and sanitized before listing.',
-        emoji: '👕',
-        gradient: 'from-emerald-300 to-green-500',
-        dateAdded: Date.now() - 3600000 * 24 * 5 // 5 days ago
-      },
-      {
-        id: 'list-4',
-        name: 'Adjustable LED Dorm Study Lamp',
-        category: 'electronics',
-        condition: 'Like New',
-        price: 250,
-        originalPrice: 750,
-        sellerYear: '4th Year (Senior)',
-        whatsapp: '918800966889',
-        desc: 'Sleek desk lamp with dynamic multi-color temperature modes (warm/white), USB output port, and flexible neck for nighttime hostel cramming.',
-        emoji: '💡',
-        gradient: 'from-green-300 to-emerald-600',
-        dateAdded: Date.now() - 3600000 * 12 // 12 hours ago
-      },
-      {
-        id: 'list-5',
-        name: 'Casio Scientific Calculator FX-991EX',
-        category: 'electronics',
-        condition: 'Like New',
-        price: 500,
-        originalPrice: 1500,
-        sellerYear: '3rd Year (Junior)',
-        whatsapp: '918800966889',
-        desc: 'Standard calculator required for engineering and math exams. Includes sliding hardcover casing. Solar and battery-powered, perfect shape.',
-        emoji: '🧮',
-        gradient: 'from-emerald-500 to-green-700',
-        dateAdded: Date.now() - 3600000 * 36 // 1.5 days ago
-      },
-      {
-        id: 'list-6',
-        name: 'YONEX Tournament Badminton Racket',
-        category: 'gaming',
-        condition: 'Good',
-        price: 450,
-        originalPrice: 1200,
-        sellerYear: '2nd Year (Sophomore)',
-        whatsapp: '918800966889',
-        desc: 'Carbon fiber racket with high repulsion racket strings. Includes protective zipped cover. Great for evening matches at the hostel court.',
-        emoji: '🏸',
-        gradient: 'from-green-500 to-emerald-800',
-        dateAdded: Date.now() - 3600000 * 1 // 1 hour ago
-      }
-    ];
+    let listings = [];
 
     let selectedCategoryFilter = 'all';
     let uploadedFileBase64 = null;
@@ -752,8 +649,7 @@
     // Initialize document items
     document.addEventListener('DOMContentLoaded', () => {
       renderCategories();
-      renderListings();
-      renderTestimonials();
+      runListingFilter();
       renderFAQs();
 
       // Navigation scroll animation listener
@@ -1081,35 +977,6 @@
       } else {
         return `${diffDays}d ago`;
       }
-    }
-
-    // Render Testimonials
-    function renderTestimonials() {
-      const grid = document.getElementById('testimonials-grid');
-      grid.innerHTML = '';
-
-      TESTIMONIALS.forEach(t => {
-        grid.innerHTML += `
-          <div class="relative bg-black/25 border border-accent/10 rounded-2xl p-6 hover:border-accent duration-200 transition shadow-lg flex flex-col justify-between">
-            <div class="absolute top-4 right-4 opacity-5 text-accent text-5xl font-serif">“</div>
-            <div class="text-xs mb-3 flex text-accent gap-0.5">
-              ${'★'.repeat(5)}
-            </div>
-            <p class="text-xs sm:text-sm text-light/90 italic leading-relaxed relative z-10 font-normal">
-              "${t.quote}"
-            </p>
-            <div class="flex items-center gap-3 border-t border-accent/10 pt-4 mt-6 shrink-0">
-              <div class="w-10 h-10 rounded-full bg-accent text-primary font-display font-extrabold text-sm flex items-center justify-center">
-                ${t.avatar}
-              </div>
-              <div>
-                <div class="font-display font-extrabold text-xs text-white leading-none">${t.name}</div>
-                <div class="text-[9px] font-bold text-accent tracking-widest uppercase mt-1">${t.year}</div>
-              </div>
-            </div>
-          </div>
-        `;
-      });
     }
 
     // Render Collapsible FAQs
