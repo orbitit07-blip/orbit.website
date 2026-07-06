@@ -205,7 +205,7 @@
             <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
             </svg>
-            Verified peer listings
+            Campus Listings
           </div>
           <h2 class="font-display font-black text-3xl sm:text-4xl text-primary tracking-tight">Fresh Listings Near You</h2>
           <p class="text-charcoal/65 mt-2 max-w-2xl text-sm sm:text-base">No retail markups. Just study sets, gadgets, dorm keys, and gear passed down responsibly at friendly student prices.</p>
@@ -441,15 +441,6 @@
             </div>
           </div>
 
-          <!-- Grid 4 -->
-          <div class="mb-6">
-            <label for="form-whatsapp" class="block font-display text-xs font-black uppercase tracking-wider text-primary mb-2">WhatsApp Contact Number</label>
-            <div class="relative">
-              <input type="tel" id="form-whatsapp" required pattern="[0-9]{10}" placeholder="98XXXXXXXX" class="w-full px-4 py-3 border-2 border-primary/10 rounded-xl text-sm placeholder-primary/20 outline-none focus:border-primary transition" />
-            </div>
-            <p class="text-[11px] text-primary/55 font-semibold mt-1">Required so peers can instantly initiate an introduced buying conversation over WhatsApp web/app.</p>
-          </div>
-
           <!-- Textarea description -->
           <div class="mb-6">
             <label for="form-desc" class="block font-display text-xs font-black uppercase tracking-wider text-primary mb-2">Item Description</label>
@@ -584,7 +575,7 @@
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.03-5.115-2.908-6.995-1.878-1.88-4.357-2.914-6.999-2.914-5.439 0-9.865 4.423-9.87 9.869-.001 1.748.476 3.414 1.385 4.881l-1.012 3.7 3.791-.994L6.647 19.154z"/>
             </svg>
-            Chat: +91 8800966889
+            Chat on WhatsApp
           </a>
         </div>
       </div>
@@ -627,6 +618,80 @@
     </div>
   </div>
 
+  <!-- Product Detail Modal -->
+  <div id="product-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-emerald-100 flex flex-col max-h-[90vh] relative">
+      
+      <!-- Close button -->
+      <button onclick="closeItemModal()" class="absolute top-4 right-4 bg-black/30 hover:bg-black/50 text-white hover:scale-105 duration-150 rounded-full p-2 focus:outline-none z-10 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- Modal Image / Graphic -->
+      <div id="modal-image-container" class="aspect-video w-full relative overflow-hidden bg-slate-50 border-b border-emerald-50 shrink-0">
+        <!-- Dyn content inside JS -->
+      </div>
+
+      <!-- Modal Content Body -->
+      <div class="p-6 overflow-y-auto flex-1 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span id="modal-category" class="text-[10px] font-black tracking-widest text-[#00c2ff] uppercase">Category</span>
+            <span id="modal-date" class="text-[10px] text-primary/55 font-bold">Added recently</span>
+          </div>
+
+          <h2 id="modal-title" class="font-display font-black text-primary text-xl leading-tight mb-3">
+            Product Title
+          </h2>
+
+          <div class="flex flex-wrap items-center gap-2 mb-4">
+            <span id="modal-condition" class="border font-display text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1.5 rounded-full">
+              Condition
+            </span>
+            <div id="modal-location-badge" class="inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-50 rounded-lg border border-emerald-100 text-[10px] font-bold text-primary">
+              <!-- Location badge dynamically populated -->
+            </div>
+          </div>
+
+          <p id="modal-desc" class="text-charcoal/75 text-sm font-normal leading-relaxed mb-6">
+            Full Description
+          </p>
+
+          <!-- Seller Section -->
+          <div class="bg-emerald-50/50 rounded-2xl p-4 border border-emerald-100/50 mb-6">
+            <div class="text-[10px] font-black uppercase tracking-wider text-emerald-800 mb-2">Seller Information</div>
+            <div class="flex items-center gap-2">
+              <span class="text-lg">👤</span>
+              <strong id="modal-seller" class="text-xs text-primary font-bold">Seller Year</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer / Pricing / Button -->
+        <div class="border-t border-emerald-50 pt-4 flex items-center justify-between gap-4 shrink-0">
+          <div>
+            <div class="flex items-baseline gap-1.5">
+              <span id="modal-price" class="font-display font-black text-2xl text-primary">₹0</span>
+              <span id="modal-orig-price" class="text-xs text-charcoal/30 font-medium line-through">₹0</span>
+            </div>
+            <span id="modal-save-pill" class="text-[9px] text-[#22c55e] font-black tracking-wide block mt-0.5 uppercase">Saved</span>
+          </div>
+
+          <a id="modal-chat-btn" href="#" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold tracking-wide uppercase rounded-full transition duration-150 shadow-lg shadow-emerald-500/20 focus:outline-none">
+            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.03-5.115-2.908-6.995-1.878-1.88-4.357-2.914-6.999-2.914-5.439 0-9.865 4.423-9.87 9.869-.001 1.748.476 3.414 1.385 4.881l-1.012 3.7 3.791-.994L6.647 19.154z"/>
+            </svg>
+            Chat to Buy
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
 
   <!-- ══════════════ CLIENT-SIDE JAVASCRIPT LOGIC ══════════════ -->
   <script>
@@ -649,7 +714,53 @@
     ];
 
     // Local state variables
-    let listings = [];
+    let listings = [
+      {
+        id: 'list-sold-1',
+        name: 'Oswaal CAT 9 Years Solved Papers (2017-2025)',
+        category: 'books',
+        condition: 'Good',
+        price: 250,
+        originalPrice: 450,
+        sellerYear: 'Delhi University Student',
+        desc: 'Oswaal Books CAT Common Admission Test — 9 Years Solved Papers Year-wise & Shift-wise (2017-2025). Covers VARC, DILR & QA. Includes Original Questions, Step-by-Step Solutions, and Last 9 Years Trend Analysis. Strictly as per latest IIM exam scheme. For 2026 Exam. Lightly used with no missing pages.',
+        emoji: '📚',
+        gradient: 'from-emerald-400 to-green-600',
+        location: 'North Campus, Delhi University',
+        sold: true,
+        dateAdded: Date.now() - 3600000 * 24 * 2
+      },
+      {
+        id: 'list-sold-2',
+        name: 'Compact Wooden Mini Study Table',
+        category: 'hostel',
+        condition: 'Good',
+        price: 150,
+        originalPrice: 400,
+        sellerYear: 'Delhi University Student',
+        desc: 'Compact foldable mini study table perfect for hostel room use. Lightweight and sturdy wooden build. Used for only 6 months — no scratches or damage. Ideal for late-night study sessions on your bed.',
+        emoji: '🪑',
+        gradient: 'from-green-400 to-emerald-700',
+        location: 'North Campus, Delhi University',
+        sold: true,
+        dateAdded: Date.now() - 3600000 * 24 * 5
+      },
+      {
+        id: 'list-sold-3',
+        name: 'ECO Hons Semester 3 & 4 Complete Book Set',
+        category: 'books',
+        condition: 'Good',
+        price: 0,
+        originalPrice: 800,
+        sellerYear: 'Delhi University Student',
+        desc: 'Complete set of Economics Honours Semester 3 and 4 books. All core and elective subjects covered. Books are in good readable condition. Price is fully negotiable — serious buyers only. Contact to discuss.',
+        emoji: '📖',
+        gradient: 'from-emerald-500 to-green-700',
+        location: 'South Campus, Delhi University',
+        sold: true,
+        dateAdded: Date.now() - 3600000 * 24 * 1
+      }
+    ];
 
     let selectedCategoryFilter = 'all';
     let uploadedFileBase64 = null;
@@ -923,6 +1034,22 @@
                   Save ${savingPercent}%
                 </div>
               ` : ''}
+              ${item.sold ? `
+                <div style="position:absolute;inset:0;
+                background:rgba(0,0,0,0.6);display:flex;
+                align-items:center;justify-content:center;
+                z-index:10;">
+                  <span style="color:#ff4444;
+                  font-family:'Space Grotesk',sans-serif;
+                  font-weight:900;font-size:2.5rem;
+                  text-transform:uppercase;
+                  letter-spacing:0.1em;
+                  border:4px solid #ff4444;
+                  padding:0.3rem 1.2rem;border-radius:8px;
+                  transform:rotate(-15deg);
+                  display:inline-block;">SOLD</span>
+                </div>
+              ` : ''}
             </div>
 
             <!-- Card Content Body -->
@@ -932,38 +1059,76 @@
                   <span class="text-[10px] font-black tracking-widest text-[#00c2ff] uppercase">${categoryLabel}</span>
                   <span class="text-[10px] text-primary/55 font-bold">${formattedDate}</span>
                 </div>
-                <h3 class="font-display font-extrabold text-primary text-base leading-tight group-hover:text-[#00c2ff] transition truncate">
-                  ${item.name}
-                </h3>
+                ${item.sold ? `
+                  <h3 class="font-display font-extrabold text-primary text-base leading-tight truncate">
+                    ${item.name}
+                  </h3>
+                ` : `
+                  <h3 class="font-display font-extrabold text-primary text-base leading-tight group-hover:text-[#00c2ff] transition truncate cursor-pointer hover:underline" onclick="openItemModal('${item.id}')">
+                    ${item.name}
+                  </h3>
+                `}
                 <p class="text-charcoal/75 text-xs font-normal leading-relaxed mt-2.5 overflow-hidden line-clamp-2">
                   ${item.desc}
                 </p>
                 
-                <div class="inline-flex items-center gap-1 px-2 py-1 bg-emerald-50 rounded-lg border border-emerald-100 text-[10px] font-bold text-primary mt-4">
-                  <span>👤 Senior:</span> <strong>${item.sellerYear}</strong>
+                <div class="flex flex-col items-start gap-1 mt-4">
+                  <div class="inline-flex items-center gap-1 px-2 py-1 bg-emerald-50 rounded-lg border border-emerald-100 text-[10px] font-bold text-primary">
+                    <strong>${item.sellerYear}</strong>
+                  </div>
+                  ${item.location ? `
+                    <div style="display:inline-flex;
+                    align-items:center;gap:4px;
+                    padding:4px 8px;background:#f0fdf4;
+                    border-radius:8px;
+                    border:1px solid #bbf7d0;
+                    font-size:10px;font-weight:700;
+                    color:#0A2E1A;margin-top:6px;">
+                      📍 ${item.location}
+                    </div>
+                  ` : ''}
                 </div>
               </div>
 
               <!-- Price Footers -->
               <div class="border-t border-emerald-50/50 pt-4 mt-5 flex items-center justify-between">
                 <div>
-                  <div class="flex items-baseline gap-1.5">
-                    <span class="font-display font-black text-xl text-primary">₹${item.price}</span>
+                  <div class="flex items-baseline gap-1.5 flex-wrap">
+                    ${item.sold ? `
+                      ${item.price === 0 ? `
+                        <span class="font-display font-bold text-base" style="color: #AAFF45;">Negotiable</span>
+                      ` : `
+                        <span class="font-display font-black text-xl text-primary">₹${item.price}</span>
+                      `}
+                      <span style="background-color: #ff4444; color: white; font-size: 8px; font-weight: 800; text-transform: uppercase; padding: 2px 6px; border-radius: 99px; display: inline-flex; align-items: center; justify-content: center; margin-left: 4px;">SOLD</span>
+                    ` : `
+                      <span class="font-display font-black text-xl text-primary">₹${item.price}</span>
+                    `}
                     ${item.originalPrice > item.price ? `
                       <span class="text-xs text-charcoal/30 font-medium line-through">₹${item.originalPrice}</span>
                     ` : ''}
                   </div>
-                  ${savingAmount > 0 ? `
+                  ${!item.sold && savingAmount > 0 ? `
                     <span class="text-[9px] text-[#22c55e] font-black tracking-wide block mt-0.5 uppercase">Saved ₹${savingAmount}</span>
                   ` : ''}
                 </div>
 
-                <a href="${waLink}" target="_blank" class="inline-flex items-center gap-1 px-4 py-2.5 bg-primary text-white hover:bg-[#00c2ff] text-xs font-bold tracking-wide uppercase rounded-full transition duration-150 shadow shadow-primary/10 focus:outline-none">
-                  <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.03-5.115-2.908-6.995-1.878-1.88-4.357-2.914-6.999-2.914-5.439 0-9.865 4.423-9.87 9.869-.001 1.748.476 3.414 1.385 4.881l-1.012 3.7 3.791-.994L6.647 19.154z"/>
-                  </svg>
-                  Chat to Buy
-                </a>
+                ${item.sold ? `
+                  <button disabled style="opacity:0.45;
+                  cursor:not-allowed;padding:0.6rem 1rem;
+                  background:#94a3b8;color:white;
+                  font-size:0.75rem;font-weight:700;
+                  border-radius:99px;border:none;
+                  display:inline-flex;align-items:center;
+                  gap:0.25rem;">Item Sold</button>
+                ` : `
+                  <a href="${waLink}" target="_blank" class="inline-flex items-center gap-1 px-4 py-2.5 bg-primary text-white hover:bg-[#00c2ff] text-xs font-bold tracking-wide uppercase rounded-full transition duration-150 shadow shadow-primary/10 focus:outline-none">
+                    <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.03-5.115-2.908-6.995-1.878-1.88-4.357-2.914-6.999-2.914-5.439 0-9.865 4.423-9.87 9.869-.001 1.748.476 3.414 1.385 4.881l-1.012 3.7 3.791-.994L6.647 19.154z"/>
+                    </svg>
+                    Chat to Buy
+                  </a>
+                `}
               </div>
             </div>
 
@@ -971,6 +1136,106 @@
         `;
       });
     }
+
+    // Open/Close Item Detail Modal
+    function openItemModal(itemId) {
+      const item = listings.find(l => l.id === itemId);
+      if (!item) return;
+
+      const modal = document.getElementById('product-modal');
+      const imgContainer = document.getElementById('modal-image-container');
+      const category = document.getElementById('modal-category');
+      const date = document.getElementById('modal-date');
+      const title = document.getElementById('modal-title');
+      const condition = document.getElementById('modal-condition');
+      const locationBadge = document.getElementById('modal-location-badge');
+      const desc = document.getElementById('modal-desc');
+      const seller = document.getElementById('modal-seller');
+      const price = document.getElementById('modal-price');
+      const origPrice = document.getElementById('modal-orig-price');
+      const savePill = document.getElementById('modal-save-pill');
+      const chatBtn = document.getElementById('modal-chat-btn');
+
+      // Populate image or gradient
+      if (item.uploadedImage) {
+        imgContainer.innerHTML = `<img src="${item.uploadedImage}" alt="${item.name}" class="w-full h-full object-cover" />`;
+      } else {
+        const grad = item.gradient || 'from-emerald-400 to-green-600';
+        imgContainer.innerHTML = `
+          <div class="w-full h-full bg-gradient-to-br ${grad} flex items-center justify-center">
+            <div class="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-4xl shadow">
+              ${item.emoji || '📦'}
+            </div>
+          </div>
+        `;
+      }
+
+      // Category and date
+      const catData = CATEGORIES.find(c => c.id === item.category);
+      category.textContent = catData ? catData.name : item.category;
+      date.textContent = formatTimeAgo(item.dateAdded);
+
+      // Title
+      title.textContent = item.name;
+
+      // Condition classes
+      condition.textContent = item.condition;
+      condition.className = 'border font-display text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1.5 rounded-full';
+      if (item.condition === 'Like New') {
+        condition.classList.add('bg-emerald-100', 'text-emerald-800', 'border-emerald-200');
+      } else if (item.condition === 'Good') {
+        condition.classList.add('bg-blue-100', 'text-blue-800', 'border-blue-200');
+      } else {
+        condition.classList.add('bg-amber-100', 'text-amber-800', 'border-amber-200');
+      }
+
+      // Location
+      if (item.location) {
+        locationBadge.innerHTML = `📍 ${item.location}`;
+        locationBadge.style.display = 'inline-flex';
+      } else {
+        locationBadge.style.display = 'none';
+      }
+
+      // Description
+      desc.textContent = item.desc;
+
+      // Seller Info
+      seller.textContent = item.sellerYear;
+
+      // Pricing
+      price.textContent = `₹${item.price}`;
+      if (item.originalPrice > item.price) {
+        origPrice.textContent = `₹${item.originalPrice}`;
+        origPrice.style.display = 'inline';
+        const savingPercent = Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100);
+        const savingAmount = item.originalPrice - item.price;
+        savePill.textContent = `Saved ₹${savingAmount} (${savingPercent}%)`;
+        savePill.style.display = 'block';
+      } else {
+        origPrice.style.display = 'none';
+        savePill.style.display = 'none';
+      }
+
+      // Chat Button Link to Admin/Seller (Note: "linking to https://wa.me/918800966889 with pre-filled item name in message")
+      const waMsg = `Hi! I'm interested in buying your "${item.name}" listed on Orbit for ₹${item.price}. Is it still available?`;
+      chatBtn.href = `https://wa.me/918800966889?text=${encodeURIComponent(waMsg)}`;
+
+      // Show modal
+      modal.classList.remove('hidden');
+    }
+
+    function closeItemModal() {
+      document.getElementById('product-modal').classList.add('hidden');
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+      const modal = document.getElementById('product-modal');
+      if (e.target === modal) {
+        closeItemModal();
+      }
+    });
 
     // Time difference calculator
     function formatTimeAgo(epochTime) {
@@ -1123,10 +1388,9 @@
       const sellerYear = document.getElementById('form-year').value.trim();
       const price = parseFloat(document.getElementById('form-price').value);
       const originalPrice = parseFloat(document.getElementById('form-orig-price').value);
-      const whatsapp = document.getElementById('form-whatsapp').value.trim();
       const desc = document.getElementById('form-desc').value.trim();
 
-      if (!title || !category || !condition || !sellerYear || isNaN(price) || isNaN(originalPrice) || !whatsapp || !desc) {
+      if (!title || !category || !condition || !sellerYear || isNaN(price) || isNaN(originalPrice) || !desc) {
         alert('Please fill in all listing coordinates.');
         return;
       }
@@ -1140,7 +1404,7 @@
         price: price,
         originalPrice: originalPrice,
         sellerYear: sellerYear,
-        whatsapp: '91' + whatsapp,
+        whatsapp: '918800966889',
         desc: desc,
         emoji: getCategoryEmoji(category),
         gradient: getCategoryGradient(category),
