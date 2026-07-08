@@ -441,6 +441,24 @@
             </div>
           </div>
 
+          <!-- WhatsApp Contact -->
+          <div class="mb-6">
+            <label for="form-whatsapp" class="block font-display text-xs font-black uppercase tracking-wider text-primary mb-2">Your WhatsApp Number</label>
+            <div class="relative">
+              <input type="tel" id="form-whatsapp" pattern="[0-9]{10}" required placeholder="10 digit mobile number" class="w-full px-4 py-3 border-2 border-primary/10 rounded-xl text-sm placeholder-primary/30 outline-none focus:border-primary transition" />
+            </div>
+            <p class="text-[11px] text-primary/55 font-semibold mt-1">Buyers will contact you directly on this number. It will not be displayed publicly.</p>
+          </div>
+
+          <!-- PIN Protection -->
+          <div class="mb-6">
+            <label for="form-pin" class="block font-display text-xs font-black uppercase tracking-wider text-primary mb-2">Set a 4-digit PIN to manage listing</label>
+            <div class="relative">
+              <input type="password" id="form-pin" maxlength="4" pattern="[0-9]{4}" required placeholder="e.g. 1234" class="w-full px-4 py-3 border-2 border-primary/10 rounded-xl text-sm placeholder-primary/30 outline-none focus:border-primary transition" />
+            </div>
+            <p class="text-[11px] text-primary/55 font-semibold mt-1">You will need this PIN to remove your listing later.</p>
+          </div>
+
           <!-- Textarea description -->
           <div class="mb-6">
             <label for="form-desc" class="block font-display text-xs font-black uppercase tracking-wider text-primary mb-2">Item Description</label>
@@ -1130,6 +1148,18 @@
                   </a>
                 `}
               </div>
+
+              ${!item.sold ? `
+                <div class="mt-4 pt-3 border-t border-emerald-50/50 flex justify-start">
+                  <button onclick="requestListingRemoval('${item.id}')" 
+                          class="transition duration-150" 
+                          style="background: transparent; border: 1px solid rgba(239,68,68,0.4); color: rgba(239,68,68,0.7); font-size: 10px; font-weight: 700; border-radius: 6px; padding: 4px 8px; cursor: pointer;" 
+                          onmouseover="this.style.borderColor='rgba(239,68,68,1)'; this.style.color='rgba(239,68,68,1)';" 
+                          onmouseout="this.style.borderColor='rgba(239,68,68,0.4)'; this.style.color='rgba(239,68,68,0.7)';">
+                    Remove Listing
+                  </button>
+                </div>
+              ` : ''}
             </div>
 
           </div>
@@ -1217,9 +1247,9 @@
         savePill.style.display = 'none';
       }
 
-      // Chat Button Link to Admin/Seller (Note: "linking to https://wa.me/918800966889 with pre-filled item name in message")
+      // Chat Button Link to Admin/Seller (Note: "linking to specific seller's whatsapp number directly")
       const waMsg = `Hi! I'm interested in buying your "${item.name}" listed on Orbit for ₹${item.price}. Is it still available?`;
-      chatBtn.href = `https://wa.me/918800966889?text=${encodeURIComponent(waMsg)}`;
+      chatBtn.href = `https://wa.me/${item.whatsapp || '918800966889'}?text=${encodeURIComponent(waMsg)}`;
 
       // Show modal
       modal.classList.remove('hidden');
@@ -1227,6 +1257,23 @@
 
     function closeItemModal() {
       document.getElementById('product-modal').classList.add('hidden');
+    }
+
+    // Handle listing deletion using user security PIN
+    function requestListingRemoval(itemId) {
+      const item = listings.find(l => l.id === itemId);
+      if (!item) return;
+
+      const userPin = prompt("Enter your 4-digit PIN to remove this listing");
+      if (userPin === null) return; // User cancelled prompt
+
+      if (userPin === String(item.pin)) {
+        listings = listings.filter(l => l.id !== itemId);
+        runListingFilter();
+        alert("Your listing has been removed.");
+      } else {
+        alert("Incorrect PIN. Listing not removed.");
+      }
     }
 
     // Close modal when clicking outside
@@ -1388,9 +1435,11 @@
       const sellerYear = document.getElementById('form-year').value.trim();
       const price = parseFloat(document.getElementById('form-price').value);
       const originalPrice = parseFloat(document.getElementById('form-orig-price').value);
+      const whatsapp = '91' + document.getElementById('form-whatsapp').value.trim();
+      const pin = document.getElementById('form-pin').value.trim();
       const desc = document.getElementById('form-desc').value.trim();
 
-      if (!title || !category || !condition || !sellerYear || isNaN(price) || isNaN(originalPrice) || !desc) {
+      if (!title || !category || !condition || !sellerYear || isNaN(price) || isNaN(originalPrice) || !whatsapp || !pin || !desc) {
         alert('Please fill in all listing coordinates.');
         return;
       }
@@ -1404,7 +1453,8 @@
         price: price,
         originalPrice: originalPrice,
         sellerYear: sellerYear,
-        whatsapp: '918800966889',
+        whatsapp: whatsapp,
+        pin: pin,
         desc: desc,
         emoji: getCategoryEmoji(category),
         gradient: getCategoryGradient(category),
