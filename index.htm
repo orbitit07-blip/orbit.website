@@ -56,9 +56,250 @@
     footer .footer-bottom-bar {
       background-color: rgba(0,0,0,0.3) !important;
     }
+
+    /* ━━━ PREMIUM VISUAL UPGRADES ━━━ */
+    
+    /* Noise Background Overlay */
+    .noise-bg {
+      position: relative;
+    }
+    .noise-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.035;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      z-index: 1;
+    }
+
+    /* Layered Shadows */
+    .layered-shadow {
+      box-shadow: 
+        0 1px 3px rgba(10, 46, 26, 0.04),
+        0 8px 16px -4px rgba(10, 46, 26, 0.06),
+        0 16px 24px -8px rgba(10, 46, 26, 0.03);
+      transition: box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .layered-shadow:hover {
+      box-shadow: 
+        0 3px 6px rgba(10, 46, 26, 0.06),
+        0 16px 28px -4px rgba(10, 46, 26, 0.10),
+        0 24px 40px -8px rgba(10, 46, 26, 0.05);
+    }
+
+    /* Glow Elements */
+    .radial-glow-hero {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(170,255,69,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(75px);
+      pointer-events: none;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+    }
+    .radial-glow-handoff {
+      position: absolute;
+      bottom: -15%;
+      right: 15%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(10,46,26,0.11) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(55px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Floating blobs animation */
+    @keyframes blob-float-1 {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(40px, -40px) scale(1.08); }
+      66% { transform: translate(-30px, 30px) scale(0.96); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes blob-float-2 {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-50px, 50px) scale(1.12); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    .hero-blob-1 {
+      position: absolute;
+      top: 25%;
+      right: 10%;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(170,255,69,0.10) 0%, transparent 70%);
+      filter: blur(55px);
+      animation: blob-float-1 20s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero-blob-2 {
+      position: absolute;
+      bottom: 15%;
+      left: 15%;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(34,197,94,0.06) 0%, transparent 70%);
+      filter: blur(65px);
+      animation: blob-float-2 24s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Scroll animations style */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
+      will-change: transform, opacity;
+    }
+    .animated-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .animated-visible-no-motion {
+      opacity: 1;
+      transform: translateY(0);
+      transition: none !important;
+    }
+
+    /* Stagger transitions list */
+    .stagger-1 { transition-delay: 80ms; }
+    .stagger-2 { transition-delay: 160ms; }
+    .stagger-3 { transition-delay: 240ms; }
+    .stagger-4 { transition-delay: 320ms; }
+    .stagger-5 { transition-delay: 400ms; }
+    .stagger-6 { transition-delay: 480ms; }
+
+    /* Page load headline animations */
+    @keyframes line-up {
+      0% { transform: translateY(100%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    .animate-line-up {
+      animation: line-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    /* Magnetic Hover CTA Effects */
+    .hero-lime-btn {
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+    }
+    .hero-lime-btn:hover {
+      transform: scale(1.04) translateY(-1px);
+      box-shadow: 0 0 25px rgba(170, 255, 69, 0.4);
+    }
+    .hero-dark-btn {
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.2s ease;
+    }
+    .hero-dark-btn:hover {
+      transform: scale(1.04) translateY(-1px);
+    }
+
+    /* Micro-interactions */
+    .micro-btn {
+      transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease, background-color 0.2s ease !important;
+    }
+    .micro-btn:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 4px 12px rgba(10, 46, 26, 0.12) !important;
+    }
+    .micro-btn:active {
+      transform: translateY(0) scale(0.97) !important;
+    }
+
+    /* Hover icons details */
+    .hover-icon-anim {
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .tilt-card:hover .hover-icon-anim {
+      transform: scale(1.18) rotate(8deg);
+    }
+
+    /* FAQ accordion styles */
+    .faq-grid-container {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .faq-grid-container.open {
+      grid-template-rows: 1fr;
+    }
+    .faq-grid-inner {
+      overflow: hidden;
+      min-height: 0;
+    }
+    .faq-icon-rot {
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .faq-icon-rot.open {
+      transform: rotate(45deg);
+    }
+
+    /* Bobbing float effects */
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .bob-float {
+      animation: bob 3s ease-in-out infinite;
+    }
+
+    /* Nav links animated underline */
+    .nav-link-underline {
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .nav-link-underline::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #AAFF45;
+      transform: scaleX(0);
+      transform-origin: bottom left;
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .nav-link-underline:hover::after {
+      transform: scaleX(1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .animate-line-up {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .bob-float {
+        animation: none !important;
+      }
+      .hero-lime-btn:hover, .hero-dark-btn:hover, .micro-btn:hover {
+        transform: none !important;
+      }
+      .hero-blob-1, .hero-blob-2 {
+        animation: none !important;
+      }
+    }
   </style>
 </head>
 <body class="font-sans text-charcoal bg-white antialiased">
+
+  <!-- Slim Scroll-Progress Bar at the very top -->
+  <div id="scroll-progress" class="fixed top-0 left-0 h-[4px] bg-accent z-[100] transition-all duration-75" style="width: 0%;"></div>
 
   <!-- ══════════════ HEADER / NAVIGATION ══════════════ -->
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-md border-b border-accent/10 transition-all duration-300">
@@ -79,16 +320,16 @@
 
         <!-- Desktop Navigation Items -->
         <div class="hidden md:flex items-center gap-8">
-          <a href="#categories" class="text-sm font-medium text-white/90 hover:text-accent transition">Categories</a>
-          <a href="#browse" class="text-sm font-medium text-white/90 hover:text-accent transition">Browse Listings</a>
-          <a href="#how-it-works" class="text-sm font-medium text-white/90 hover:text-accent transition">How It Works</a>
-          <a href="#faq" class="text-sm font-medium text-white/90 hover:text-accent transition">FAQs</a>
-          <a href="#sell" class="text-sm font-medium text-white/90 hover:text-accent transition">Sell Stuff</a>
+          <a href="#categories" class="text-sm font-medium text-white/90 hover:text-accent transition nav-link-underline">Categories</a>
+          <a href="#browse" class="text-sm font-medium text-white/90 hover:text-accent transition nav-link-underline">Browse Listings</a>
+          <a href="#how-it-works" class="text-sm font-medium text-white/90 hover:text-accent transition nav-link-underline">How It Works</a>
+          <a href="#faq" class="text-sm font-medium text-white/90 hover:text-accent transition nav-link-underline">FAQs</a>
+          <a href="#sell" class="text-sm font-medium text-white/90 hover:text-accent transition nav-link-underline">Sell Stuff</a>
         </div>
 
         <!-- Post Button Desktop -->
         <div class="hidden md:block">
-          <a href="#sell" class="inline-flex items-center gap-1.5 px-4 py-2 bg-accent hover:bg-accent-hover text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full transition-all duration-200 shadow-md">
+          <a href="#sell" class="inline-flex items-center gap-1.5 px-4 py-2 bg-accent hover:bg-accent-hover text-primary font-display font-bold text-xs uppercase tracking-wider rounded-full transition-all duration-200 shadow-md micro-btn">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
               <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
             </svg>
@@ -119,12 +360,17 @@
   </nav>
 
   <!-- ══════════════ HERO SECTION ══════════════ -->
-  <section id="home" class="relative bg-primary pt-32 pb-24 overflow-hidden">
+  <section id="home" class="relative bg-primary pt-32 pb-28 overflow-hidden noise-bg">
+    <!-- Glow and Floating Mesh Blob Overlays -->
+    <div class="radial-glow-hero"></div>
+    <div class="hero-blob-1"></div>
+    <div class="hero-blob-2"></div>
+
     <div class="hero-grid"></div>
     <div class="absolute top-1/4 left-10 w-48 h-48 border border-accent/20 rounded-full glowing-circle"></div>
     <div class="absolute bottom-12 right-12 w-64 h-64 border border-accent/15 rounded-full glowing-circle" style="animation-delay: 2s;"></div>
     <div class="absolute -top-12 right-24 w-80 h-80 bg-accent/5 rounded-full filter blur-3xl pointer-events-none"></div>
-
+ 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
       <!-- Badge Badge -->
       <div class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-accent font-display text-xs font-bold uppercase tracking-widest mb-6 animate-pulse">
@@ -133,27 +379,36 @@
         </svg>
         Exclusive College Resell Network
       </div>
-
-      <h1 class="font-display font-black text-white leading-none tracking-tight text-4xl sm:text-6xl lg:text-7xl max-w-4xl mx-auto mb-6">
-        Everything You Need.<br><span class="text-accent">Already On Campus.</span>
+ 
+      <h1 class="font-display font-black text-white leading-tight tracking-tight text-4xl sm:text-6xl lg:text-7xl max-w-4xl mx-auto mb-6">
+        <span class="block overflow-hidden py-1">
+          <span class="inline-block animate-line-up" style="animation-delay: 0.1s;">Everything You Need.</span>
+        </span>
+        <span class="block overflow-hidden py-1">
+          <span class="inline-block text-accent animate-line-up" style="animation-delay: 0.3s;">Already On Campus.</span>
+        </span>
       </h1>
-
-      <p class="text-light/85 max-w-2xl mx-auto text-base sm:text-lg mb-10 leading-relaxed font-normal">
+ 
+      <p class="text-light/85 max-w-2xl mx-auto text-base sm:text-lg mb-6 leading-relaxed font-normal">
         Orbit is your trusted student-to-student marketplace. Access second-hand course books, daily electronics, hostel furniture &amp; fashion bundles directly from peers, safely and affordably.
       </p>
-
+ 
+      <p class="text-white/60 max-w-2xl mx-auto text-xs sm:text-sm mb-10 leading-relaxed font-medium">
+        Orbit is a free listing platform. All transactions are between buyers and sellers directly. Orbit holds no liability.
+      </p>
+ 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-        <a href="#browse" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-accent hover:bg-accent-hover text-primary font-display font-extrabold tracking-wide uppercase rounded-xl transition duration-150 transform hover:-translate-y-0.5 active:translate-y-0 shadow-lg">
+        <a href="#browse" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-accent hover:bg-accent-hover text-primary font-display font-extrabold tracking-wide uppercase rounded-xl transition duration-150 shadow-lg hero-lime-btn">
           Browse Listings
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
             <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
           </svg>
         </a>
-        <a href="#sell" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 border-2 border-accent text-accent hover:bg-accent/10 font-display font-extrabold tracking-wide uppercase rounded-xl transition">
+        <a href="#sell" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 border-2 border-accent text-accent hover:bg-accent/10 font-display font-extrabold tracking-wide uppercase rounded-xl transition hero-dark-btn">
           Sell or Give Away
         </a>
       </div>
-
+ 
       <!-- Live metrics list -->
       <div class="max-w-4xl mx-auto bg-black/35 border border-accent/15 rounded-2xl p-6 grid grid-cols-2 sm:grid-cols-4 gap-4 divide-y sm:divide-y-0 sm:divide-x divide-accent/10">
         <div class="flex items-center justify-center gap-2 font-display text-white text-sm font-bold uppercase tracking-wider py-2 sm:py-0">
@@ -170,12 +425,19 @@
         </div>
       </div>
     </div>
+
+    <!-- Subtle Curved Bottom SVG Divider -->
+    <div class="absolute bottom-0 left-0 right-0 z-10 overflow-hidden line-none pointer-events-none" style="height: 40px; transform: translateY(1px);">
+      <svg class="relative block w-full h-full" viewBox="0 0 1200 120" preserveAspectRatio="none" style="fill: #ffffff;">
+        <path d="M0,0 C300,60 900,10 1200,80 L1200,120 L0,120 Z"></path>
+      </svg>
+    </div>
   </section>
 
   <!-- ══════════════ CATEGORIES PANEL ══════════════ -->
   <section id="categories" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="text-center max-w-3xl mx-auto mb-12 animate-on-scroll">
         <h2 class="font-display font-black text-3xl sm:text-4xl text-primary uppercase tracking-tight">What's In Orbit?</h2>
         <p class="text-charcoal/70 mt-3 font-medium">Browse campus essentials under specific student categories. Click any card to instantly filter active peer listings below!</p>
       </div>
@@ -187,7 +449,7 @@
 
       <!-- Reset button if category is active -->
       <div class="flex justify-center mt-10 hidden" id="reset-cat-btn-container">
-        <button onclick="clearCategoryFilter()" class="inline-flex items-center gap-2 px-6 py-2.5 bg-accent text-primary font-display font-bold text-sm uppercase tracking-wider rounded-full shadow hover:bg-accent-hover transition-all duration-200">
+        <button onclick="clearCategoryFilter()" class="inline-flex items-center gap-2 px-6 py-2.5 bg-accent text-primary font-display font-bold text-sm uppercase tracking-wider rounded-full shadow hover:bg-accent-hover transition-all duration-200 micro-btn">
           Reset Category Filters (Show All)
         </button>
       </div>
@@ -199,7 +461,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Top header layout -->
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 animate-on-scroll">
         <div>
           <div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold tracking-wide uppercase mb-3">
             <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
@@ -302,9 +564,9 @@
       <!-- Steps display list -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
         <!-- Step 1 -->
-        <div class="bg-primary hover:border-accent hover:shadow-xl hover:shadow-accent/5 border-2 border-transparent text-white rounded-2xl p-8 flex flex-col items-center transition-all duration-300 shadow-md">
+        <div class="bg-primary border-2 border-transparent text-white rounded-2xl p-8 flex flex-col items-center transition-all duration-300 animate-on-scroll stagger-1 tilt-card layered-shadow noise-bg">
           <div class="font-display font-black text-3xl text-accent mb-2">01</div>
-          <div class="p-3 bg-black/30 rounded-full border border-accent/20 text-accent mb-4">
+          <div class="p-3 bg-black/30 rounded-full border border-accent/20 text-accent mb-4 hover-icon-anim">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -315,9 +577,9 @@
         </div>
 
         <!-- Step 2 -->
-        <div class="bg-primary hover:border-accent hover:shadow-xl hover:shadow-accent/5 border-2 border-transparent text-white rounded-2xl p-8 flex flex-col items-center transition-all duration-300 shadow-md">
+        <div class="bg-primary border-2 border-transparent text-white rounded-2xl p-8 flex flex-col items-center transition-all duration-300 animate-on-scroll stagger-2 tilt-card layered-shadow noise-bg">
           <div class="font-display font-black text-3xl text-accent mb-2">02</div>
-          <div class="p-3 bg-black/30 rounded-full border border-accent/20 text-accent mb-4">
+          <div class="p-3 bg-black/30 rounded-full border border-accent/20 text-accent mb-4 hover-icon-anim">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
             </svg>
@@ -327,9 +589,9 @@
         </div>
 
         <!-- Step 3 -->
-        <div class="bg-primary hover:border-accent hover:shadow-xl hover:shadow-accent/5 border-2 border-transparent text-white rounded-2xl p-8 flex flex-col items-center transition-all duration-300 shadow-md">
+        <div class="bg-primary border-2 border-transparent text-white rounded-2xl p-8 flex flex-col items-center transition-all duration-300 animate-on-scroll stagger-3 tilt-card layered-shadow noise-bg">
           <div class="font-display font-black text-3xl text-accent mb-2">03</div>
-          <div class="p-3 bg-black/30 rounded-full border border-accent/20 text-accent mb-4">
+          <div class="p-3 bg-black/30 rounded-full border border-accent/20 text-accent mb-4 hover-icon-anim">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
             </svg>
@@ -343,10 +605,11 @@
 
   <!-- ══════════════ SENIOR HANDOFF BANNERS ══════════════ -->
   <section id="handoff" class="bg-accent border-t-4 border-b-4 border-primary py-16 relative overflow-hidden">
+    <div class="radial-glow-handoff"></div>
     <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-black/5 pointer-events-none"></div>
     <div class="absolute -bottom-16 -left-16 w-56 h-56 rounded-full bg-black/5 pointer-events-none"></div>
     
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 animate-on-scroll">
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/10 text-primary font-display text-xs font-extrabold uppercase tracking-widest mb-4">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -361,7 +624,7 @@
       </div>
 
       <div class="flex-shrink-0 w-full md:w-auto">
-        <a href="#sell" class="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white hover:bg-black font-display font-black uppercase text-sm tracking-widest rounded-xl transition shadow-lg transform hover:-translate-y-0.5 active:translate-y-0">
+        <a href="#sell" class="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white hover:bg-black font-display font-black uppercase text-sm tracking-widest rounded-xl transition shadow-lg transform hover:-translate-y-0.5 active:translate-y-0 micro-btn">
           List My Old Gear
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
             <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
@@ -375,12 +638,12 @@
   <section id="sell" class="py-20 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
       
-      <div class="text-center mb-12">
+      <div class="text-center mb-12 animate-on-scroll">
         <h2 class="font-display font-black text-3xl sm:text-4xl text-primary uppercase tracking-tight">Sell / Give Away</h2>
         <p class="text-charcoal/70 mt-2 font-medium">Turn your unused campus gear, calculators, books, or hostel essentials into quick cash!</p>
       </div>
 
-      <div class="bg-white border-2 border-emerald-950/10 rounded-3xl p-6 sm:p-10 shadow-lg relative overflow-hidden">
+      <div class="bg-white border-2 border-emerald-950/10 rounded-3xl p-6 sm:p-10 shadow-lg relative overflow-hidden animate-on-scroll stagger-1 layered-shadow">
         
         <!-- Successful Post Notification Toast inside form space -->
         <div id="form-success-banner" class="hidden mb-6 p-4 bg-primary text-white border-2 border-accent rounded-2xl flex gap-3.5 items-start animate-fade-in transition">
@@ -487,8 +750,16 @@
             <input type="file" id="file-input" onchange="previewUploadedImage(this)" class="hidden" accept="image/*" />
           </div>
 
+          <!-- Agreement Checkbox -->
+          <div class="mb-6 flex items-start gap-3">
+            <input type="checkbox" id="form-agree" required class="mt-1 w-4 h-4 text-accent border-2 border-primary/20 rounded cursor-pointer accent-accent" />
+            <label for="form-agree" class="text-xs text-primary/75 font-semibold leading-relaxed cursor-pointer select-none">
+              I agree that Orbit is only a listing platform and takes no responsibility for this transaction.
+            </label>
+          </div>
+
           <!-- Submit CTA -->
-          <button type="submit" class="w-full py-4 bg-accent text-primary hover:bg-accent-hover font-display font-black text-sm uppercase tracking-wide rounded-xl shadow-md border-2 border-transparent hover:border-primary duration-150 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+          <button type="submit" class="w-full py-4 bg-accent text-primary hover:bg-accent-hover font-display font-black text-sm uppercase tracking-wide rounded-xl shadow-md border-2 border-transparent hover:border-primary duration-150 transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 micro-btn">
             Submit Item To Orbit
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
               <polyline points="20 6 9 17 4 12"/>
@@ -501,10 +772,17 @@
   </section>
 
   <!-- ══════════════ COLLAPSIBLE FAQ ACCORDION PANEL ══════════════ -->
-  <section id="faq" class="py-20 bg-primary border-t border-b border-accent/10">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+  <section id="faq" class="relative py-24 bg-primary border-none noise-bg overflow-hidden">
+    <!-- Subtle Wavy Top SVG Divider -->
+    <div class="absolute top-0 left-0 right-0 z-10 overflow-hidden line-none pointer-events-none" style="height: 40px; transform: translateY(-1px) rotate(180deg);">
+      <svg class="relative block w-full h-full" viewBox="0 0 1200 120" preserveAspectRatio="none" style="fill: #ffffff;">
+        <path d="M0,0 C300,60 900,10 1200,80 L1200,120 L0,120 Z"></path>
+      </svg>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
       
-      <div class="text-center mb-16">
+      <div class="text-center mb-16 animate-on-scroll">
         <h2 class="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight">Got Questions?</h2>
         <p class="text-light/80 mt-3 font-medium">Have queries on campus trade spots, UPI payment channels, safety protocols, or listings? Check our FAQs!</p>
       </div>
@@ -516,7 +794,7 @@
   </section>
 
   <!-- ══════════════ FOOTER ══════════════ -->
-  <footer style="background-color: #0A2E1A; border-top: 4px solid #AAFF45; border-radius: 2.5rem 2.5rem 0 0;" class="text-white/80">
+  <footer style="background-color: #0A2E1A; border-top: 4px solid #AAFF45; border-radius: 2.5rem 2.5rem 0 0;" class="text-white/80 noise-bg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12" style="background-color: #0A2E1A;">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         
@@ -604,6 +882,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs" style="color: rgba(255,255,255,0.5);">
         <p>© 2026 Orbit Student Network. Built exclusively for campus peer trades. All rights reserved.</p>
         <div class="flex gap-4">
+          <a href="javascript:void(0)" onclick="openTermsModal()" class="hover:text-[#AAFF45] transition font-semibold">Terms & Disclaimer</a>
           <span class="cursor-help hover:text-[#AAFF45] transition" title="Orbit checks domain verification on student email bounds.">Verified Domain</span>
           <span class="cursor-help hover:text-[#AAFF45] transition" title="Payments handled peer-to-peer. Zero commission rules.">Zero-Fee Trade</span>
         </div>
@@ -633,6 +912,74 @@
     <!-- Rich tooltips -->
     <div class="absolute right-14 top-1/2 -translate-y-1/2 bg-primary text-white text-[10px] font-display font-extrabold uppercase tracking-widest px-3 py-1.5 rounded-lg border border-accent/20 opacity-0 group-hover:opacity-100 transition whitespace-nowrap pointer-events-none mr-2">
       Chat With Admin 💬
+    </div>
+  </div>
+
+  <!-- Terms & Disclaimer Modal -->
+  <div id="terms-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-[#0A2E1A] rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl border-2 border-[#AAFF45]/30 flex flex-col max-h-[85vh] relative text-white p-6 md:p-8 font-sans">
+      
+      <!-- Close button -->
+      <button onclick="closeTermsModal()" class="absolute top-4 right-4 text-white/75 hover:text-[#AAFF45] hover:scale-110 duration-150 p-2 focus:outline-none transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Header -->
+      <div class="mb-6 pr-8">
+        <h2 class="font-display font-black text-xl md:text-2xl tracking-wide text-[#AAFF45] uppercase">
+          ORBIT — TERMS OF USE & DISCLAIMER
+        </h2>
+      </div>
+
+      <!-- Scrollable content -->
+      <div class="overflow-y-auto pr-2 space-y-5 text-xs md:text-sm leading-relaxed text-white/90 max-h-[60vh] scrollbar-thin scrollbar-thumb-accent">
+        <div>
+          <h3 class="font-display font-bold text-sm tracking-wider text-[#AAFF45] uppercase mb-1">1. Platform Nature</h3>
+          <p class="text-white/80">Orbit is a free, neutral listing platform that connects student buyers and sellers. Orbit does not sell, buy, hold, or handle any products or payments itself.</p>
+        </div>
+
+        <div>
+          <h3 class="font-display font-bold text-sm tracking-wider text-[#AAFF45] uppercase mb-1">2. No Liability</h3>
+          <p class="text-white/80">Orbit and its operators are not responsible for the quality, condition, safety, or authenticity of any item listed on this platform. All transactions are strictly between the buyer and seller.</p>
+        </div>
+
+        <div>
+          <h3 class="font-display font-bold text-sm tracking-wider text-[#AAFF45] uppercase mb-1">3. Meet Safely</h3>
+          <p class="text-white/80">Users are strongly advised to meet only in public campus areas during daylight hours. Orbit does not guarantee the safety of any in-person meeting.</p>
+        </div>
+
+        <div>
+          <h3 class="font-display font-bold text-sm tracking-wider text-[#AAFF45] uppercase mb-1">4. No Payment Guarantee</h3>
+          <p class="text-white/80">Orbit does not process or guarantee any payments. Always inspect the item before paying. Orbit holds no responsibility for payment disputes, fraud, or loss.</p>
+        </div>
+
+        <div>
+          <h3 class="font-display font-bold text-sm tracking-wider text-[#AAFF45] uppercase mb-1">5. User Responsibility</h3>
+          <p class="text-white/80">By listing or purchasing through Orbit, users agree they are acting on their own free will and Orbit bears no legal responsibility for any outcome of any transaction.</p>
+        </div>
+
+        <div>
+          <h3 class="font-display font-bold text-sm tracking-wider text-[#AAFF45] uppercase mb-1">6. Fraud Warning</h3>
+          <p class="text-white/80">If you suspect fraud, stop the transaction immediately and report to your campus security or local authorities. Do not contact Orbit for legal disputes.</p>
+        </div>
+
+        <div>
+          <h3 class="font-display font-bold text-sm tracking-wider text-[#AAFF45] uppercase mb-1">7. Age & Eligibility</h3>
+          <p class="text-white/80">This platform is intended for enrolled college students only. By using Orbit you confirm you are a student and are above 18 years of age.</p>
+        </div>
+
+        <div>
+          <h3 class="font-display font-bold text-sm tracking-wider text-[#AAFF45] uppercase mb-1">8. Changes</h3>
+          <p class="text-white/80">Orbit reserves the right to update these terms at any time without prior notice.</p>
+        </div>
+
+        <div class="pt-3 border-t border-white/15 text-xs font-semibold text-[#AAFF45]/90">
+          By using this platform you agree to all the above terms.
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -784,17 +1131,129 @@
     let uploadedFileBase64 = null;
     let uploadedFileName = '';
 
+    // Initialize premium interactive effects
+    let scrollObserver = null;
+    function initScrollAndVisualEffects() {
+      // 1. Intersection Observer for scroll animations and price count-ups
+      if (scrollObserver) {
+        scrollObserver.disconnect();
+      }
+
+      const countUpPrice = (el, targetVal) => {
+        if (el.hasAttribute('data-counted')) return;
+        el.setAttribute('data-counted', 'true');
+        let current = 0;
+        const duration = 800; // ms
+        const stepTime = 16; // ~60fps
+        const steps = duration / stepTime;
+        const increment = targetVal / steps;
+        
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= targetVal) {
+            el.textContent = `₹${targetVal}`;
+            clearInterval(timer);
+          } else {
+            el.textContent = `₹${Math.floor(current)}`;
+          }
+        }, stepTime);
+      };
+
+      scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animated-visible');
+            
+            // Trigger price count-up inside this card
+            const countUps = entry.target.querySelectorAll('.count-up-price');
+            countUps.forEach(cu => {
+              const val = parseFloat(cu.getAttribute('data-price-val'));
+              if (!isNaN(val) && val > 0) {
+                countUpPrice(cu, val);
+              }
+            });
+          }
+        });
+      }, {
+        threshold: 0.05,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        scrollObserver.observe(el);
+      });
+
+      // 2. 3D Tilt Hover interaction (safe for reduced motion)
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      
+      if (!isMobile && !prefersReduced) {
+        document.querySelectorAll('.tilt-card').forEach(card => {
+          if (card.dataset.tiltInitialized) return;
+          card.dataset.tiltInitialized = "true";
+
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left; // x position within element
+            const y = e.clientY - rect.top;  // y position within element
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            // Calculate tilt degrees (max 6deg)
+            const rotateX = ((centerY - y) / centerY) * 6;
+            const rotateY = ((x - centerX) / centerX) * 6;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+          });
+
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+          });
+        });
+      }
+
+      // 3. Magnetic Hover Buttons (safe for reduced motion)
+      if (!isMobile && !prefersReduced) {
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
+          if (btn.dataset.magneticInitialized) return;
+          btn.dataset.magneticInitialized = "true";
+
+          btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            // Move CTA slightly toward cursor
+            btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.02)`;
+          });
+
+          btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0px, 0px) scale(1)';
+          });
+        });
+      }
+    }
+
     // Initialize document items
     document.addEventListener('DOMContentLoaded', () => {
       renderCategories();
       runListingFilter();
       renderFAQs();
+      initScrollAndVisualEffects();
 
       // Navigation scroll animation listener
       window.addEventListener('scroll', () => {
         const navbar = document.getElementById('navbar');
         const scrollTopBtn = document.getElementById('scroll-top-container');
         
+        // Calculate and apply scroll progress percentage
+        const progress = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        const progressEl = document.getElementById('scroll-progress');
+        if (progressEl) {
+          progressEl.style.width = progress + '%';
+        }
+
         if (window.scrollY > 50) {
           navbar.classList.add('shadow-lg', 'bg-primary/95');
           navbar.classList.remove('bg-primary/95');
@@ -862,13 +1321,14 @@
       const grid = document.getElementById('category-grid');
       grid.innerHTML = '';
 
-      CATEGORIES.forEach(cat => {
+      CATEGORIES.forEach((cat, index) => {
         const isActive = selectedCategoryFilter === cat.id;
-        const cardClass = `bg-white border-2 rounded-2xl p-6 cursor-pointer hover:border-accent hover:shadow-xl hover:shadow-accent/5 duration-200 transition flex gap-4 ${isActive ? 'border-accent bg-emerald-50/20 shadow-md shadow-accent/5' : 'border-primary/10'}`;
+        const staggerClass = `stagger-${(index % 3) + 1}`;
+        const cardClass = `bg-white border-2 rounded-2xl p-6 cursor-pointer duration-200 transition flex gap-4 animate-on-scroll ${staggerClass} tilt-card layered-shadow ${isActive ? 'border-accent bg-emerald-50/20' : 'border-primary/10'}`;
         
         grid.innerHTML += `
           <div onclick="selectCategoryFilter('${cat.id}')" class="${cardClass}">
-            <div class="p-3.5 rounded-xl bg-emerald-50/50 text-2xl shrink-0 flex items-center justify-center border border-emerald-100 ${isActive ? 'bg-primary text-white border-transparent' : ''}">
+            <div class="p-3.5 rounded-xl bg-emerald-50/50 text-2xl shrink-0 flex items-center justify-center border border-emerald-100 hover-icon-anim ${isActive ? 'bg-primary text-white border-transparent' : ''}">
               ${cat.emoji}
             </div>
             <div>
@@ -890,6 +1350,7 @@
       } else {
         resetContainer.classList.add('hidden');
       }
+      initScrollAndVisualEffects();
     }
 
     // Handle user selected category click
@@ -996,11 +1457,12 @@
       }
       emptyState.classList.add('hidden');
 
-      filteredList.forEach(item => {
+      filteredList.forEach((item, index) => {
         // Calculate saving values
         const savingPercent = Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100);
         const savingAmount = item.originalPrice - item.price;
         const formattedDate = formatTimeAgo(item.dateAdded);
+        const staggerClass = 'stagger-' + ((index % 3) + 1);
 
         // Condition color badge markup
         let condBadgeClasses = '';
@@ -1031,7 +1493,7 @@
           const grad = item.gradient || 'from-emerald-400 to-green-600';
           graphicMarkup = `
             <div class="w-full h-full bg-gradient-to-br ${grad} flex items-center justify-center">
-              <div class="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-4xl shadow group-hover:scale-110 duration-300 transform transition">
+              <div class="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-4xl shadow group-hover:scale-110 duration-300 transform transition hover-icon-anim">
                 ${item.emoji || '📦'}
               </div>
             </div>
@@ -1039,7 +1501,7 @@
         }
 
         grid.innerHTML += `
-          <div class="bg-white border border-emerald-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-emerald-950/5 hover:-translate-y-1 transition duration-200 flex flex-col group">
+          <div class="bg-white border border-emerald-100 rounded-3xl overflow-hidden flex flex-col group animate-on-scroll ${staggerClass} tilt-card layered-shadow">
             
             <!-- Card Image Box -->
             <div class="aspect-video relative overflow-hidden bg-slate-50 border-b border-emerald-50 shrink-0">
@@ -1116,11 +1578,11 @@
                       ${item.price === 0 ? `
                         <span class="font-display font-bold text-base" style="color: #AAFF45;">Negotiable</span>
                       ` : `
-                        <span class="font-display font-black text-xl text-primary">₹${item.price}</span>
+                        <span class="font-display font-black text-xl text-primary count-up-price" data-price-val="${item.price}">₹${item.price}</span>
                       `}
                       <span style="background-color: #ff4444; color: white; font-size: 8px; font-weight: 800; text-transform: uppercase; padding: 2px 6px; border-radius: 99px; display: inline-flex; align-items: center; justify-content: center; margin-left: 4px;">SOLD</span>
                     ` : `
-                      <span class="font-display font-black text-xl text-primary">₹${item.price}</span>
+                      <span class="font-display font-black text-xl text-primary count-up-price" data-price-val="${item.price}">₹${item.price}</span>
                     `}
                     ${item.originalPrice > item.price ? `
                       <span class="text-xs text-charcoal/30 font-medium line-through">₹${item.originalPrice}</span>
@@ -1140,7 +1602,7 @@
                   display:inline-flex;align-items:center;
                   gap:0.25rem;">Item Sold</button>
                 ` : `
-                  <a href="${waLink}" target="_blank" class="inline-flex items-center gap-1 px-4 py-2.5 bg-primary text-white hover:bg-[#00c2ff] text-xs font-bold tracking-wide uppercase rounded-full transition duration-150 shadow shadow-primary/10 focus:outline-none">
+                  <a href="${waLink}" target="_blank" class="inline-flex items-center gap-1 px-4 py-2.5 bg-primary text-white hover:bg-[#00c2ff] text-xs font-bold tracking-wide uppercase rounded-full transition duration-150 shadow shadow-primary/10 focus:outline-none micro-btn">
                     <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
                       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.45L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.03-5.115-2.908-6.995-1.878-1.88-4.357-2.914-6.999-2.914-5.439 0-9.865 4.423-9.87 9.869-.001 1.748.476 3.414 1.385 4.881l-1.012 3.7 3.791-.994L6.647 19.154z"/>
                     </svg>
@@ -1152,7 +1614,7 @@
               ${!item.sold ? `
                 <div class="mt-4 pt-3 border-t border-emerald-50/50 flex justify-start">
                   <button onclick="requestListingRemoval('${item.id}')" 
-                          class="transition duration-150" 
+                          class="transition duration-150 micro-btn" 
                           style="background: transparent; border: 1px solid rgba(239,68,68,0.4); color: rgba(239,68,68,0.7); font-size: 10px; font-weight: 700; border-radius: 6px; padding: 4px 8px; cursor: pointer;" 
                           onmouseover="this.style.borderColor='rgba(239,68,68,1)'; this.style.color='rgba(239,68,68,1)';" 
                           onmouseout="this.style.borderColor='rgba(239,68,68,0.4)'; this.style.color='rgba(239,68,68,0.7)';">
@@ -1165,6 +1627,7 @@
           </div>
         `;
       });
+      initScrollAndVisualEffects();
     }
 
     // Open/Close Item Detail Modal
@@ -1259,6 +1722,15 @@
       document.getElementById('product-modal').classList.add('hidden');
     }
 
+    // Open/Close Terms & Disclaimer Modal
+    function openTermsModal() {
+      document.getElementById('terms-modal').classList.remove('hidden');
+    }
+
+    function closeTermsModal() {
+      document.getElementById('terms-modal').classList.add('hidden');
+    }
+
     // Handle listing deletion using user security PIN
     function requestListingRemoval(itemId) {
       const item = listings.find(l => l.id === itemId);
@@ -1281,6 +1753,10 @@
       const modal = document.getElementById('product-modal');
       if (e.target === modal) {
         closeItemModal();
+      }
+      const termsModal = document.getElementById('terms-modal');
+      if (e.target === termsModal) {
+        closeTermsModal();
       }
     });
 
@@ -1305,22 +1781,23 @@
       const container = document.getElementById('faq-container');
       container.innerHTML = '';
 
-      FAQS.forEach(item => {
+      FAQS.forEach((item, index) => {
+        const staggerClass = `stagger-${(index % 3) + 1}`;
         container.innerHTML += `
-          <div class="border border-accent/10 rounded-2xl overflow-hidden transition duration-150 faq-element" id="faq-item-${item.id}">
+          <div class="border border-accent/10 rounded-2xl overflow-hidden transition-all duration-300 faq-element animate-on-scroll ${staggerClass}" id="faq-item-${item.id}">
             <button onclick="toggleFAQ('${item.id}')" class="w-full flex justify-between items-center px-6 py-4 text-left font-display text-white text-sm sm:text-base font-extrabold hover:bg-black/10 focus:outline-none focus:bg-black/10 gap-4">
               <span class="flex items-center gap-3">
                 <span class="w-5 h-5 shrink-0 text-accent font-black">?</span>
                 ${item.q}
               </span>
-              <svg id="chevron-faq-${item.id}" class="w-5 h-5 text-white/50 transform transition duration-200 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <polyline points="6 9 12 15 18 9"/>
-              </svg>
+              <span id="chevron-faq-${item.id}" class="faq-plus-icon font-display font-bold text-lg text-white/50 transform transition duration-300 shrink-0 select-none">+</span>
             </button>
-            <div id="body-faq-${item.id}" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-black/5">
-              <p class="px-6 py-4 text-xs sm:text-sm text-light/80 leading-relaxed border-t border-accent/5">
-                ${item.a}
-              </p>
+            <div id="body-faq-${item.id}" class="faq-grid-container bg-black/5">
+              <div class="faq-grid-inner">
+                <p class="px-6 py-4 text-xs sm:text-sm text-light/80 leading-relaxed border-t border-accent/5">
+                  ${item.a}
+                </p>
+              </div>
             </div>
           </div>
         `;
@@ -1337,22 +1814,22 @@
         const otherContainer = document.getElementById(`faq-item-${item.id}`);
         
         if (item.id.toString() === id.toString()) {
-          const isOpen = otherBody.style.maxHeight && otherBody.style.maxHeight !== '0px';
+          const isOpen = otherBody.classList.contains('open');
           
           if (isOpen) {
-            otherBody.style.maxHeight = '0px';
-            otherChevron.classList.remove('rotate-180');
+            otherBody.classList.remove('open');
+            otherChevron.classList.remove('open');
             otherContainer.classList.remove('border-accent', 'bg-black/20');
             otherContainer.classList.add('border-accent/10');
           } else {
-            otherBody.style.maxHeight = '300px';
-            otherChevron.classList.add('rotate-180');
+            otherBody.classList.add('open');
+            otherChevron.classList.add('open');
             otherContainer.classList.add('border-accent', 'bg-black/20');
             otherContainer.classList.remove('border-accent/10');
           }
         } else {
-          otherBody.style.maxHeight = '0px';
-          otherChevron.classList.remove('rotate-180');
+          otherBody.classList.remove('open');
+          otherChevron.classList.remove('open');
           otherContainer.classList.remove('border-accent', 'bg-black/20');
           otherContainer.classList.add('border-accent/10');
         }
